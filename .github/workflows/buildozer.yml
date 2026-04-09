@@ -17,11 +17,11 @@ jobs:
     - name: Install dependencies and Buildozer
       run: |
         sudo apt-get update
-        # تحديث المكتبات للنسخ الجديدة (tinfo6 بدلاً من tinfo5)
-        sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses6 libncursesw6 libtinfo6 cmake libffi-dev libssl-dev
+        # إضافة مكتبات التوافق (32-bit) لدعم أدوات الـ SDK مثل AIDL
+        sudo apt-get install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses6 libncursesw6 libtinfo6 cmake libffi-dev libssl-dev lib32z1 lib32ncurses6 lib32stdc++6
         pip install --user --upgrade buildozer Cython virtualenv
         export PATH=$PATH:~/.local/bin
-        # تنظيف أي محاولة سابقة قبل البدء
+        # أمر البناء
         buildozer android debug
         
     - name: Upload APK
